@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: catlow-yarns-gotland-sale
     ports:
-      - "3000:80"  # Maps to port 3000 so your nginx can reverse proxy
+      - "3011:80"  # Changed from 3000 to 3011
     restart: unless-stopped
     environment:
       - NODE_ENV=production
