@@ -1,14 +1,15 @@
 {
-  "name": "vite_react_shadcn_ts",
+  "name": "catlow-yarns-gotland-sale",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "build:dev": "vite build --mode development",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "docker:build": "docker build -t catlow-yarns-gotland-sale:latest .",
+    "docker:run": "docker run -p 80:80 catlow-yarns-gotland-sale:latest"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

@@ -1,9 +1,24 @@
 version: '3.8'
 
 services:
-  react-app:
-    build: .
+  catlow-yarns-sale:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: catlow-yarns-gotland-sale
     ports:
       - "80:80"
-    container_name: simple-calculator-app
-    restart: always
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.catlow-yarns.rule=Host(`your-domain.com`)"
+      - "traefik.http.routers.catlow-yarns.tls=true"
+      - "traefik.http.routers.catlow-yarns.tls.certresolver=letsencrypt"
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
