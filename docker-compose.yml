@@ -7,18 +7,13 @@ services:
       dockerfile: Dockerfile
     container_name: catlow-yarns-gotland-sale
     ports:
-      - "80:80"
+      - "3000:80"  # Maps to port 3000 so your nginx can reverse proxy
     restart: unless-stopped
     environment:
       - NODE_ENV=production
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.catlow-yarns.rule=Host(`your-domain.com`)"
-      - "traefik.http.routers.catlow-yarns.tls=true"
-      - "traefik.http.routers.catlow-yarns.tls.certresolver=letsencrypt"
     networks:
-      - web
+      - default
 
 networks:
-  web:
-    external: true
+  default:
+    external: false
